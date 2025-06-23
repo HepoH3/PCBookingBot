@@ -132,7 +132,7 @@ async def listcomputers(update: Update, context: ContextTypes.DEFAULT_TYPE) -> N
     if check_privileges(username, 'supervisor'):
         computers = [computer[1] for computer in get_available_computers()]
         if computers:
-            computers_list = "\n".join([str(comp[0]) for comp in computers])
+            computers_list = "\n".join([str(comp) for comp in computers])
             await update.message.reply_text(f"Доступные к бронированию компьютеры:\n{computers_list}")
         else:
             await update.message.reply_text("Нет доступных для бронирования компьютеров")

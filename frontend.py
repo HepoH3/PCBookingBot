@@ -72,6 +72,19 @@ async def listusers(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     else:
         await update.message.reply_text("Неизвестная или недоступная команда.")
 
+# Обработчик команды /listinterns
+async def listinterns(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
+    username = update.effective_user.username
+    if check_privileges(username, 'supervisor'):
+        interns = get_interns()
+        if interns:
+            interns_list = "\n".join([f"{usr[1]}" for usr in interns])
+            await update.message.reply_text(interns_list)
+        else:
+            await update.message.reply_text("Пользователи не найдены.")
+    else:
+        await update.message.reply_text("Неизвестная или недоступная команда.")
+
 # Обработчик команды /deluser
 async def deluser(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
     username = update.effective_user.username
@@ -385,11 +398,13 @@ commands = {
         "Добавление стажеров:\n/addintern `список tg-имен стажеров через пробел`",
         "Добавление компьютеров:\n/addcomputer `список номеров компьютеров`",
         "Удаление компьютеров:\n/removecomputer `список номеров компьютеров`",
-        "Список доступных компьютеров:\n/listcomputers"
+        "Список доступных компьютеров:\n/listcomputers",
+        "Список стажеров:\n/listinterns"
     ],
     "administrator": [
         "Добавление руководителей:\n/addsuper `список tg-имен руководителей`",
         "Просмотр списка руководителей:\n/listsupers",
+        "Просмотр списка пользователей:\n/listusers",
         "Удаление пользователя:\n/deluser `имя пользователя`"
     ]
 }

@@ -98,6 +98,13 @@ def get_supervisors():
     ''')
     return cursor.fetchall()
 
+# Функция для получения списка всех стажеров
+def get_interns():
+    cursor.execute('''
+        SELECT user_id, username FROM users WHERE role = 'intern'
+    ''')
+    return cursor.fetchall()
+
 # Функция для получения списка всех руководителей
 def get_users():
     cursor.execute('''

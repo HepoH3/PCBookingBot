@@ -1,5 +1,6 @@
 from telegram.ext import ApplicationBuilder, CommandHandler, CallbackQueryHandler
-from frontend import start, addsuper, listsupers, listusers, deluser, addintern, \
+from frontend import start, addsuper, listsupers, listusers, listinterns, \
+                     deluser, addintern, \
                      addcomputer, removecomputer, listcomputers, book, \
                      check_computer, list_bookings, cancel_booking_callback,\
                      handle_date_selection, handle_time_selection, \
@@ -25,6 +26,7 @@ def main():
     application.add_handler(CommandHandler("addsuper", addsuper))
     application.add_handler(CommandHandler("listsupers", listsupers))
     application.add_handler(CommandHandler("listusers", listusers))
+    application.add_handler(CommandHandler("listinterns", listinterns))
     application.add_handler(CommandHandler("deluser", deluser))
     application.add_handler(CommandHandler("addintern", addintern))
     application.add_handler(CommandHandler("addcomputer", addcomputer))
